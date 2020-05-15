@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @message.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @message.body %>
+</p>
+<%= form_for [ @message, Comment.new] do |f| %>
+      <%= f.text_area :message, placeholder: "Add a comment" , class: 'form-control'%>
+      <%= f.submit "Add Comment", class: "btn btn-primary" %>
+    <% end %>
+<ul>
+<%= render partial: 'comments/comment', collection: @message&.comments %>
+</ul>
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>
