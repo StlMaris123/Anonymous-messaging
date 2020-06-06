@@ -9,14 +9,11 @@
   <strong>Body:</strong>
   <%= @message.body %>
 </p>
-<p>
-  <strong>Location:</strong>
-  <%= request.location.city %>
-</p>
-<p>
-  <strong>Location:</strong>
-  <%= @message.address %>
-</p>
+
+<script>
+  console.log("Adress: <%= j @message.address.to_json.html_safe %>");
+</script>
+
 <%= form_for [ @message, Comment.new] do |f| %>
       <%= f.text_area :message, placeholder: "Add a comment" , class: 'form-control'%>
       <%= f.submit "Add Comment", class: "btn btn-primary" %>

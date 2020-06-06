@@ -14,12 +14,12 @@
 class Message < ApplicationRecord
     scope :order_by_creation_date, -> { order(created_at: :desc)}
     has_many :comments, as: :commentable#, :order => 'created_at DESC'
-    # before_validation :generate_random_latitude_and_longitude
+    before_validation :generate_random_latitude_and_longitude
 
     geocoded_by :address
     # Use latitude and longitude to find the location
     reverse_geocoded_by :latitude, :longitude
-    after_validation :geocode
+    after_validation :reverse_geocode
 
     private
 
