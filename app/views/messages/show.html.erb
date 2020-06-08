@@ -1,26 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @message.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @message.body %>
-</p>
-
 <script>
   console.log("Adress: <%= j @message.address.to_json.html_safe %>");
 </script>
-
-<%= form_for [ @message, Comment.new] do |f| %>
+<div class="card">
+  <div class="card-header">
+    <%= @message.title %>
+  </div>
+  <div class="card-body">   
+    <p class="card-text"> <%= @message.body %></p>
+    <%= form_for [ @message, Comment.new] do |f| %>
       <%= f.text_area :message, placeholder: "Add a comment" , class: 'form-control'%>
       <%= f.submit "Add Comment", class: "btn btn-primary" %>
     <% end %>
-<ul>
-<%= render partial: 'comments/comment', collection: @message&.comments %>
-</ul>
-
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+    <ul>
+    <%= render partial: 'comments/comment', collection: @message&.comments %>
+    </ul>
+    <%= link_to 'Edit', edit_message_path(@message) %> |
+    <%= link_to 'Back', messages_path %>
+  </div>
+</div>

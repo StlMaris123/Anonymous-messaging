@@ -11,6 +11,9 @@ class CommentsController < ApplicationController
   def create
     @comment.comments.build(comment_params)
     if @comment.save
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:notice] = 'sorry could not '
     end
   end
 

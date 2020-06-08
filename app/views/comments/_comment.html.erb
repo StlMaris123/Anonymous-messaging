@@ -2,9 +2,11 @@
   <%= comment.message %> -
 
   <%= form_for [comment, Comment.new] do |f| %>
-      <%= f.text_area :message, placeholder: "Add a Reply" %><br/>
-      <%= f.submit "Reply"  %>
+   <div class="form-group">
+      <%= f.text_area :message, placeholder: "Add a Reply", class: "form-control" %><br/>
+      <%= f.submit "Reply", class: "btn btn-primary"  %>
       <% end %>
+    </div>
 
   <ul>
       <%= render partial: 'comments/comment', collection: comment.comments %>
